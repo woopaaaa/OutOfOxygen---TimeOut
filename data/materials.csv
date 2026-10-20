@@ -1,0 +1,8 @@
+material_id,name,unit,quantity_in_stock,unit_cost_rm,min_stock,lead_time_days
+FLOUR,Wheat flour,kg,120,3.20,20,2
+SUGAR,Refined sugar,kg,40,2.85,10,2
+BUTTER,Butter,kg,15,28.00,5,4
+EGG,Eggs,pcs,300,0.45,60,1
+COCONUT,Grated coconut,kg,10,9.50,2,1
+PACK,Packaging box,pcs,500,0.60,100,5
+CHICKEN,Chicken meat,kg,25,11.50,5,2

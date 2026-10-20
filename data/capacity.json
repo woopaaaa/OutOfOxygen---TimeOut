@@ -1,0 +1,6 @@
+{
+  "_note": "ILLUSTRATIVE sample data",
+  "planning_start": "2026-10-21",
+  "hours_per_day": 8,
+  "working_days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+}
