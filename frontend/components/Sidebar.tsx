@@ -20,12 +20,14 @@ export default function Sidebar() {
       <ul className="flex flex-row md:flex-col gap-2 overflow-x-auto">
         {/* make one link per item */}
         {menuItems.map((item) => {
+          // check which page is chosen now
           const isActive = currentPath === item.href;
 
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
+                // make the bg color change when page is being chosen
                 className={
                   isActive
                     ? "block rounded-lg px-4 py-2 bg-emerald-600 text-white font-semibold whitespace-nowrap"
