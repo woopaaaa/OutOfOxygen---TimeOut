@@ -5,7 +5,7 @@ from datetime import date
 import pytest
 from pydantic import ValidationError
 
-from timed.models import Capacity, Material, Order, Product, ProductionInput, RecipeLine
+from core.models import Capacity, Material, Order, Product, ProductionInput, RecipeLine
 
 
 def valid_payload() -> dict:
