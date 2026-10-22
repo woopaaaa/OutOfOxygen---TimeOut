@@ -14,7 +14,10 @@
 }
 
 body {
-  background: var(--background);
+  background-image: url("/backgroundimage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
