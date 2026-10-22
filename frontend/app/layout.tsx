@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "KilangKecil AI",
-  description: "AI production planning for Malaysian micro and small manufacturers",
+  description: "AI production planning for Malaysian  manufacturers",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
