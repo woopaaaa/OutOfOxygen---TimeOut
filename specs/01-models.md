@@ -1,13 +1,13 @@
-# Module 1 — `timed/models.py` (input data models)
+# Module 1 — `core/models.py` (input data models)
 
 **Goal:** define what valid input looks like, and reject bad input *before* any calculation runs.
 Every later module trusts these models, so this is the foundation.
 
 **Done when:** `pytest tests/test_models.py -v` is all green.
 
-## Before you start
-1. Create the folder `timed/` (next to `data/` and `tests/`) with an empty `__init__.py` inside.
-   That file turns the folder into a Python package so `from timed.models import Order` works.
+## What to do before start
+1. Create the folder `core/` (next to `data/` and `tests/`) with an empty `__init__.py` inside.
+   That file turns the folder into a Python package so `from core.models import Order` works.
 2. Read the Pydantic v2 basics: `BaseModel`, `Field(gt=0, ge=0, min_length=1)`, `@model_validator(mode="after")`.
    Docs: https://docs.pydantic.dev/latest/concepts/models/ and /concepts/validators/
 
@@ -38,13 +38,13 @@ All money is RM. All quantities are in the item's own unit (kg, pcs, box).
 | `ProductionInput` | `materials`, `products`, `recipes`, `orders` | lists of the above | each at least 1 item |
 | | `capacity` | `Capacity` | |
 
-## Cross-checks in `ProductionInput` (the interesting part)
+## Cross-checks in `ProductionInput`
 
 Single-field rules can't catch these — they need the whole input. Use one `@model_validator(mode="after")`,
 collect **all** problems into a list, then raise one `ValueError` joining them with `"; "`
 (so the user sees every problem at once, not one per attempt).
 
-Error messages must contain these exact phrases (tests check them):
+Error messages must contain these exact phrases:
 
 | Problem | Message must contain |
 |---|---|
