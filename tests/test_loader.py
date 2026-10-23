@@ -39,8 +39,8 @@ def test_values_have_the_right_types():
     assert flour.unit_cost_rm == pytest.approx(3.20)
     assert flour.lead_time_days == 2
     first_order = next(o for o in data.orders if o.order_id == "ORD-001")
-    assert first_order.quantity == 60
-    assert first_order.due_date == date(2026, 10, 23)
+    assert first_order.quantity == 100
+    assert first_order.due_date == date(2026, 10, 27)
 
 
 def test_capacity_loaded_and_note_ignored():
