@@ -39,6 +39,7 @@ always starts as `"pending_approval"`.
 | `status` | `"on_time"` / `"late"` / `"infeasible"` | |
 | `start_hour`, `end_hour` | number or `null` | working hours from `planning_start`; `null` if infeasible |
 | `material_cost_rm` | number | 0 if infeasible |
+| `missing_materials` | object material_id → amount | which materials are short; `{}` unless infeasible |
 | `reason` | string | plain-English explanation, show it to the user |
 
 ### MaterialLine
