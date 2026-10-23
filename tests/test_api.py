@@ -41,7 +41,7 @@ def test_response_has_all_contract_keys(response):
 
 def test_schedule_is_the_optimised_plan(response):
     ids = [line["order_id"] for line in response["schedule"]]
-    assert ids[:2] == ["ORD-002", "ORD-001"]  # earliest due date first
+    assert ids[:2] == ["ORD-002", "ORD-004"]  # earliest due date first
     assert len(ids) == 6
 
 

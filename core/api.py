@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from core.inventory import build_recipe_index, material_report, total_requirements
 from core.loader import load_production_input
+from core.metrics import compare_plans
 from core.models import ProductionInput
 from core.planner import build_optimised_plan
 
@@ -50,7 +51,7 @@ def build_response(data):
             "lines": lines,
             "total_cost_rm": round(sum(line["cost_rm"] for line in lines), 2),
         },
-        "metrics": None,  # filled in by the metrics module (module 5)
+        "metrics": compare_plans(data),
         "warnings": warnings,
         "assumptions": ASSUMPTIONS,
     }

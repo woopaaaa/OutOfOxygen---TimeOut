@@ -1,6 +1,6 @@
 {
-  "_note": "EXAMPLE of the response shape, calculated from the illustrative sample data in data/. Not real business data.",
-  "generated_at": "2026-10-22T20:00:00+08:00",
+  "_note": "EXAMPLE response, calculated by the real engine from the illustrative sample data in data/. Not real business data.",
+  "generated_at": "2026-10-23T20:00:00+08:00",
   "planning_start": "2026-10-21",
   "schedule": [
     {
@@ -10,21 +10,23 @@
       "quantity": 40,
       "due_date": "2026-10-22",
       "status": "on_time",
-      "start_hour": 0.0,
+      "start_hour": 0,
       "end_hour": 1.6,
       "material_cost_rm": 267.0,
+      "missing_materials": {},
       "reason": "Enough materials and finishes before the deadline"
     },
     {
-      "order_id": "ORD-001",
+      "order_id": "ORD-004",
       "customer": "Kedai Runcit Ah Seng",
       "product_id": "COOKIE_BTR",
-      "quantity": 60,
+      "quantity": 30,
       "due_date": "2026-10-23",
       "status": "on_time",
       "start_hour": 1.6,
-      "end_hour": 3.1,
-      "material_cost_rm": 394.05,
+      "end_hour": 2.35,
+      "material_cost_rm": 197.03,
+      "missing_materials": {},
       "reason": "Enough materials and finishes before the deadline"
     },
     {
@@ -37,7 +39,10 @@
       "start_hour": null,
       "end_hour": null,
       "material_cost_rm": 0,
-      "reason": "Not enough Chicken meat (short 10 kg)"
+      "missing_materials": {
+        "CHICKEN": 10.0
+      },
+      "reason": "Not enough Chicken meat (short 10.0 kg)"
     },
     {
       "order_id": "ORD-003",
@@ -46,34 +51,39 @@
       "quantity": 80,
       "due_date": "2026-10-24",
       "status": "on_time",
-      "start_hour": 3.1,
-      "end_hour": 5.39,
+      "start_hour": 2.35,
+      "end_hour": 4.64,
       "material_cost_rm": 282.4,
+      "missing_materials": {},
       "reason": "Enough materials and finishes before the deadline"
     },
     {
-      "order_id": "ORD-004",
+      "order_id": "ORD-006",
       "customer": "Kafe Bukit Bintang",
       "product_id": "COOKIE_BTR",
-      "quantity": 100,
-      "due_date": "2026-10-26",
-      "status": "infeasible",
-      "start_hour": null,
-      "end_hour": null,
-      "material_cost_rm": 0,
-      "reason": "Not enough Butter (short 4.2 kg), Eggs (short 140 pcs)"
+      "quantity": 30,
+      "due_date": "2026-10-24",
+      "status": "on_time",
+      "start_hour": 4.64,
+      "end_hour": 5.39,
+      "material_cost_rm": 197.03,
+      "missing_materials": {},
+      "reason": "Enough materials and finishes before the deadline"
     },
     {
-      "order_id": "ORD-006",
+      "order_id": "ORD-001",
       "customer": "Raya Hamper Co",
-      "product_id": "KUIH_KELAPA",
-      "quantity": 120,
+      "product_id": "COOKIE_BTR",
+      "quantity": 100,
       "due_date": "2026-10-27",
       "status": "infeasible",
       "start_hour": null,
       "end_hour": null,
       "material_cost_rm": 0,
-      "reason": "Not enough Refined sugar (short 9 kg), Grated coconut (short 10 kg), Eggs (short 60 pcs)"
+      "missing_materials": {
+        "BUTTER": 4.2
+      },
+      "reason": "Not enough Butter (short 4.2 kg)"
     }
   ],
   "material_requirements": [
@@ -105,60 +115,60 @@
       "material_id": "COCONUT",
       "name": "Grated coconut",
       "unit": "kg",
-      "required": 20.0,
+      "required": 8.0,
       "in_stock": 10.0,
-      "shortage": 10.0,
-      "purchase_quantity": 12.0,
+      "shortage": 0,
+      "purchase_quantity": 0,
       "unit_cost_rm": 9.5,
-      "purchase_cost_rm": 114.0,
+      "purchase_cost_rm": 0.0,
       "lead_time_days": 1
     },
     {
       "material_id": "EGG",
       "name": "Eggs",
       "unit": "pcs",
-      "required": 620.0,
-      "in_stock": 300.0,
-      "shortage": 320.0,
-      "purchase_quantity": 380.0,
+      "required": 500.0,
+      "in_stock": 600.0,
+      "shortage": 0,
+      "purchase_quantity": 0,
       "unit_cost_rm": 0.45,
-      "purchase_cost_rm": 171.0,
+      "purchase_cost_rm": 0.0,
       "lead_time_days": 1
     },
     {
       "material_id": "FLOUR",
       "name": "Wheat flour",
       "unit": "kg",
-      "required": 174.0,
+      "required": 138.0,
       "in_stock": 120.0,
-      "shortage": 54.0,
-      "purchase_quantity": 74.0,
+      "shortage": 18.0,
+      "purchase_quantity": 38.0,
       "unit_cost_rm": 3.2,
-      "purchase_cost_rm": 236.8,
+      "purchase_cost_rm": 121.6,
       "lead_time_days": 2
     },
     {
       "material_id": "PACK",
       "name": "Packaging box",
       "unit": "pcs",
-      "required": 460.0,
+      "required": 340.0,
       "in_stock": 500.0,
       "shortage": 0,
-      "purchase_quantity": 60.0,
+      "purchase_quantity": 0,
       "unit_cost_rm": 0.6,
-      "purchase_cost_rm": 36.0,
+      "purchase_cost_rm": 0.0,
       "lead_time_days": 5
     },
     {
       "material_id": "SUGAR",
       "name": "Refined sugar",
       "unit": "kg",
-      "required": 64.0,
+      "required": 40.0,
       "in_stock": 40.0,
-      "shortage": 24.0,
-      "purchase_quantity": 34.0,
+      "shortage": 0,
+      "purchase_quantity": 10.0,
       "unit_cost_rm": 2.85,
-      "purchase_cost_rm": 96.9,
+      "purchase_cost_rm": 28.5,
       "lead_time_days": 2
     }
   ],
@@ -183,47 +193,23 @@
         "cost_rm": 172.5
       },
       {
-        "material_id": "COCONUT",
-        "name": "Grated coconut",
-        "unit": "kg",
-        "quantity": 12.0,
-        "unit_cost_rm": 9.5,
-        "cost_rm": 114.0
-      },
-      {
-        "material_id": "EGG",
-        "name": "Eggs",
-        "unit": "pcs",
-        "quantity": 380.0,
-        "unit_cost_rm": 0.45,
-        "cost_rm": 171.0
-      },
-      {
         "material_id": "FLOUR",
         "name": "Wheat flour",
         "unit": "kg",
-        "quantity": 74.0,
+        "quantity": 38.0,
         "unit_cost_rm": 3.2,
-        "cost_rm": 236.8
-      },
-      {
-        "material_id": "PACK",
-        "name": "Packaging box",
-        "unit": "pcs",
-        "quantity": 60.0,
-        "unit_cost_rm": 0.6,
-        "cost_rm": 36.0
+        "cost_rm": 121.6
       },
       {
         "material_id": "SUGAR",
         "name": "Refined sugar",
         "unit": "kg",
-        "quantity": 34.0,
+        "quantity": 10.0,
         "unit_cost_rm": 2.85,
-        "cost_rm": 96.9
+        "cost_rm": 28.5
       }
     ],
-    "total_cost_rm": 1084.8
+    "total_cost_rm": 580.2
   },
   "metrics": {
     "baseline": {
@@ -232,30 +218,29 @@
       "orders_late": 0,
       "orders_infeasible": 3,
       "on_time_rate": 0.5,
-      "total_material_cost_rm": 943.45,
-      "hours_used": 5.39,
+      "total_material_cost_rm": 1206.15,
+      "hours_used": 6.39,
       "hours_available": 48.0,
-      "utilisation": 0.11
+      "utilisation": 0.13
     },
     "optimised": {
       "orders_total": 6,
-      "orders_on_time": 3,
+      "orders_on_time": 4,
       "orders_late": 0,
-      "orders_infeasible": 3,
-      "on_time_rate": 0.5,
-      "total_material_cost_rm": 943.45,
+      "orders_infeasible": 2,
+      "on_time_rate": 0.67,
+      "total_material_cost_rm": 943.46,
       "hours_used": 5.39,
       "hours_available": 48.0,
       "utilisation": 0.11
     }
   },
   "warnings": [
-    "Order ORD-005 cannot be made: Not enough Chicken meat (short 10 kg)",
-    "Order ORD-004 cannot be made: Not enough Butter (short 4.2 kg), Eggs (short 140 pcs)",
-    "Order ORD-006 cannot be made: Not enough Refined sugar (short 9 kg), Grated coconut (short 10 kg), Eggs (short 60 pcs)"
+    "Order ORD-005 cannot be made: Not enough Chicken meat (short 10.0 kg)",
+    "Order ORD-001 cannot be made: Not enough Butter (short 4.2 kg)"
   ],
   "assumptions": [
-    "One production line; orders are made one after another",
+    "One production line: orders are made one after another",
     "No partial orders: an order is made in full or not at all",
     "Purchased materials are not counted as arriving within this plan"
   ]
