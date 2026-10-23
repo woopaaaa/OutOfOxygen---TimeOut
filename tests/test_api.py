@@ -35,7 +35,8 @@ def response():
 def test_response_has_all_contract_keys(response):
     assert set(response) == TOP_LEVEL_KEYS
     assert isinstance(response["generated_at"], str)
-    assert response["metrics"] is None  # filled in by module 5 later
+    assert set(response["metrics"]) == {"baseline", "optimised"}  # from module 5's compare_plans
+    assert response["metrics"]["optimised"]["orders_total"] == 6
 
 
 def test_schedule_is_the_optimised_plan(response):
