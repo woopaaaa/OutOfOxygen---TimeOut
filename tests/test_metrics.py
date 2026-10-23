@@ -94,3 +94,9 @@ def test_compare_plans_on_sample_data_is_consistent():
         assert metrics["orders_total"] == 6
         assert metrics["orders_on_time"] + metrics["orders_late"] + metrics["orders_infeasible"] == 6
         assert 0 <= metrics["utilisation"] <= 1
+
+
+def test_sample_data_shows_a_real_improvement():
+    # The demo data must show the benefit honestly: same orders and stock, better plan.
+    result = compare_plans(load_production_input())
+    assert result["optimised"]["orders_on_time"] > result["baseline"]["orders_on_time"]
