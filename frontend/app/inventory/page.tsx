@@ -1,6 +1,7 @@
-import {plan} from "@/lib/planData";
+import { getPlan } from "@/lib/planData";
 
-export default function InventoryPage() {
+export default async function InventoryPage() {
+  const plan = await getPlan();
   return (
     <div>
       <h1 className="text-2xl font-bold">Inventory Intelligence</h1>

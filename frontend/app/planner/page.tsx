@@ -1,4 +1,4 @@
-import {plan} from "@/lib/planData";
+import { getPlan } from "@/lib/planData";
 //text to show for each of the status
 const statusLabel = {
   on_time: "On time",
@@ -13,7 +13,8 @@ const statusColor = {
 };
 
 
-export default function PlannerPage() {
+export default async function PlannerPage() {
+  const plan = await getPlan();
   return (
     <div>
       <h1 className="text-2xl font-bold">Smart Production Planner</h1>

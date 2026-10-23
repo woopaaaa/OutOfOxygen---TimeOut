@@ -1,7 +1,8 @@
-import { plan } from "@/lib/planData";
+import { getPlan } from "@/lib/planData";
 import StatCard from "@/components/StatCard";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const plan = await getPlan();
   const metrics = plan.metrics.optimised;
   const ordersAtRisk = metrics.orders_late + metrics.orders_infeasible; //add the late orders with the one cannot be made
   const shortMaterials = plan.material_requirements.filter((m) => m.shortage > 0).length;

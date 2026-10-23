@@ -1,5 +1,6 @@
-import { plan } from "@/lib/planData";
-export default function SimulatorPage() {
+import { getPlan } from "@/lib/planData";
+export default async function SimulatorPage() {
+  const plan = await getPlan();
   const before = plan.metrics.baseline;
   const after = plan.metrics.optimised;
   const rows = [
