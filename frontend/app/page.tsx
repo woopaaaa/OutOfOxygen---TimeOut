@@ -21,6 +21,16 @@ export default function DashboardPage() {
         <StatCard label="Materials stock low" value={shortMaterials}  note={`${shortNames} (out of ${plan.material_requirements.length})`} />
         <StatCard label="Capacity used" value={`${utilisationPercent}%`} note={`${metrics.hours_used} of ${metrics.hours_available} hours`} />
       </div>
+      {plan.warnings.length > 0 && (
+      <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-5">
+        <h2 className="font-semibold text-red-800">Needs attention</h2>
+        <ul className="mt-3 list-disc pl-5 text-sm text-red-700">
+         {plan.warnings.map((warning) => ( //take the warning from output-example.json
+         <li key={warning}>{warning}</li> //make a list for each warning
+          ))}
+        </ul>
+    </div>
+    )}
     </div>
   );
 }
