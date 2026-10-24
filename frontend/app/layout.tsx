@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <header className="bg-slate-900 text-white px-6 py-4">
-          <p className="text-xl font-bold">KilangKecil AI</p>
+          <p className="text-xl font-bold">TimedOut AI</p>
           <p className="text-sm text-slate-300">
             Smart production planning for small factories
           </p>
