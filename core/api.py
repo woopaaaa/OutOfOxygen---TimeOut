@@ -137,3 +137,7 @@ def insights_ask(body: Question):
     forecast = build_forecast(4, with_backtest=False)
     facts = build_facts(plan, forecast, predict_stockouts(data, forecast["forecast"]))
     return ask(body.question, facts, body.language)
+# ---------- backend: data upload, storage, approval, export (module 13) ----------
+from core.backend_api import router as backend_router  # noqa: E402
+
+app.include_router(backend_router)
