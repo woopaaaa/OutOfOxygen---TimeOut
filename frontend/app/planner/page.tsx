@@ -56,7 +56,7 @@ export default async function PlannerPage() {
       {input ? (
         <AddOrderForm input={input} />
       ) : (
-        <p className="mt-8 text-sm text-slate-500">Start the Python API to try a new order.</p>
+        <p className="mt-8 text-sm text-slate-500">Start the Python API to add a new order.</p>
       )}
     </div>
   );

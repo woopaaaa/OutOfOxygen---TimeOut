@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KilangKecil AI",
+  title: "TimedOut AI",
   description: "AI production planning for Malaysian  manufacturers",
 };
 
