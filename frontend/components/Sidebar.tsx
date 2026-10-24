@@ -10,6 +10,7 @@ const menuItems = [
   { name: "Inventory Intelligence", href: "/inventory" },
   { name: "Smart Production Planner", href: "/planner" },
   { name: "Impact Simulator", href: "/simulator" },
+  { name: "Demand Forecast", href: "/forecast" },
 ];
 
 export default function Sidebar() {

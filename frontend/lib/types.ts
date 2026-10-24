@@ -95,3 +95,41 @@ export type ProductionInput = {
   orders: Order[];
   capacity: unknown;
 };
+export type ForecastDriver = {
+  driver: string;
+  multiplier: number;
+};
+
+export type ForecastLine = {
+  week_start: string;
+  product_id: string;
+  forecast_units: number;
+  lower_80: number;
+  upper_80: number;
+  change_vs_last_4_weeks_pct: number;
+  festive_event: string | null;
+  weeks_to_event: number | null;
+  drivers: ForecastDriver[];
+};
+
+export type BacktestResult = {
+  weeks_tested: number;
+  model_mape: number;
+  naive_last_4_weeks_mape: number;
+  seasonal_naive_mape: number;
+  interval_80_coverage: number;
+};
+
+export type ForecastResult = {
+  generated_at: string;
+  history_end: string;
+  horizon_weeks: number;
+  model: string;
+  forecast: ForecastLine[];
+  backtest: {
+    holdout_start: string;
+    products: Record<string, BacktestResult>;
+  };
+  data_quality: string[];
+  assumptions: string[];
+};
