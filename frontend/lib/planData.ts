@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8000/plan/sample";
 
 export async function getPlan(): Promise<PlanResult> {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(API_URL);//visit api, wait for answer and save answer in response
     if (!response.ok) {
       throw new Error(`API answered ${response.status}`);
     }

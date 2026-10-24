@@ -68,3 +68,30 @@ export type PlanResult = {
   warnings: string[];
   assumptions: string[];
 };
+// ====== the raw input data from the GET /input/sample
+// one product the factory can make
+export type Product = {
+  product_id: string;
+  name: string;
+  unit: string;
+  units_per_hour: number;
+};
+
+// one customer order
+export type Order = {
+  order_id: string;
+  customer: string;
+  product_id: string;
+  quantity: number;
+  due_date: string;
+};
+
+
+// = rest is passed back to the backend 
+export type ProductionInput = {
+  materials: unknown[];
+  products: Product[];
+  recipes: unknown[];
+  orders: Order[];
+  capacity: unknown;
+};

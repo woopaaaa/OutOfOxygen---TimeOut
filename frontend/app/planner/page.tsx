@@ -1,4 +1,6 @@
 import { getPlan } from "@/lib/planData";
+import { getInput } from "@/lib/inputData";
+import AddOrderForm from "@/components/AddOrderForm";
 //text to show for each of the status
 const statusLabel = {
   on_time: "On time",
@@ -15,6 +17,7 @@ const statusColor = {
 
 export default async function PlannerPage() {
   const plan = await getPlan();
+  const input = await getInput();
   return (
     <div>
       <h1 className="text-2xl font-bold">Smart Production Planner</h1>
@@ -49,6 +52,12 @@ export default async function PlannerPage() {
           </div>
         ))}
       </div>
+
+      {input ? (
+        <AddOrderForm input={input} />
+      ) : (
+        <p className="mt-8 text-sm text-slate-500">Start the Python API to try a new order.</p>
+      )}
     </div>
   );
 }
