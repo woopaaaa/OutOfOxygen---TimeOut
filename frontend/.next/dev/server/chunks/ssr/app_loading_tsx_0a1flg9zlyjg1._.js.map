@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/huseinrinaldi/Docs/Timed---TimeOut/frontend/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return <p className=\"text-slate-500\">Loading plan...</p>;\n}\n"],"names":["Loading","className"],"mappings":";;;;;;AAAe,SAASA;IACtB,qBAAO,8OAAC;QAAEC,WAAU;kBAAiB;;;;;;AACvC"}}]
+}
