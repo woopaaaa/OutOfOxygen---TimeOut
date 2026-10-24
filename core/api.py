@@ -1,13 +1,19 @@
 from datetime import datetime
+from typing import Literal
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
+from pydantic import BaseModel, Field
 
+from core.explain import ask, build_facts, explain
+from core.forecast import build_forecast
 from core.inventory import build_recipe_index, material_report, total_requirements
 from core.loader import load_production_input
 from core.metrics import compare_plans
 from core.models import ProductionInput
 from core.planner import build_optimised_plan
+from core.stockout import predict_stockouts
 
 ASSUMPTIONS = [
     "One production line: orders are made one after another",
@@ -63,6 +69,11 @@ app = FastAPI(title="Timed", description="Production planning engine for small f
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse("/docs")
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -76,3 +87,48 @@ def plan_sample():
 @app.post("/plan")
 def plan(data: ProductionInput):
     return build_response(data)
+
+
+# ---------- AI and forecasting (modules 7-9) ----------
+
+class Question(BaseModel):
+    question: str = Field(min_length=3, max_length=500)
+    language: Literal["en", "ms"] = "en"
+
+
+def build_insights(data, weeks=4, language="en"):
+    plan = build_response(data)
+    forecast = build_forecast(weeks)
+    stockout = predict_stockouts(data, forecast["forecast"])
+    facts = build_facts(plan, forecast, stockout)
+    return {
+        "plan": plan,
+        "forecast": forecast,
+        "stockout": stockout,
+        "explanations": explain(facts, language),
+    }
+
+
+@app.get("/forecast/sample")
+def forecast_sample(weeks: int = Query(4, ge=1, le=12)):
+    return build_forecast(weeks)
+
+
+@app.get("/stockout/sample")
+def stockout_sample(weeks: int = Query(4, ge=1, le=12)):
+    forecast = build_forecast(weeks, with_backtest=False)
+    return predict_stockouts(load_production_input(), forecast["forecast"])
+
+
+@app.get("/insights/sample")
+def insights_sample(weeks: int = Query(4, ge=1, le=12), language: Literal["en", "ms"] = "en"):
+    return build_insights(load_production_input(), weeks, language)
+
+
+@app.post("/insights/ask")
+def insights_ask(body: Question):
+    data = load_production_input()
+    plan = build_response(data)
+    forecast = build_forecast(4, with_backtest=False)
+    facts = build_facts(plan, forecast, predict_stockouts(data, forecast["forecast"]))
+    return ask(body.question, facts, body.language)
