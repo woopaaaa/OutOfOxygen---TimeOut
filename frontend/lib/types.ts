@@ -1,0 +1,135 @@
+//  in the production plan
+export type ScheduleLine = {
+  order_id: string;
+  customer: string;
+  product_id: string;
+  quantity: number;
+  due_date: string;
+  status: "on_time" | "late" | "infeasible";
+  start_hour: number | null;
+  end_hour: number | null;
+  material_cost_rm: number;
+  reason: string;
+};
+// how much is needed vs in stock
+export type MaterialLine = {
+  material_id: string;
+  name: string;
+  unit: string;
+  required: number;
+  in_stock: number;
+  shortage: number;
+  purchase_quantity: number;
+  unit_cost_rm: number;
+  purchase_cost_rm: number;
+  lead_time_days: number | null;
+};
+//  thing to buy
+export type PurchaseLine = {
+  material_id: string;
+  name: string;
+  unit: string;
+  quantity: number;
+  unit_cost_rm: number;
+  cost_rm: number;
+};
+
+//  shopping list that the owner must approve
+export type PurchaseRequest = {
+  status: string;
+  requires_role: string;
+  lines: PurchaseLine[];
+  total_cost_rm: number;
+};
+// summary of numbers for one way of planning
+export type MetricSet = {
+  orders_total: number;
+  orders_on_time: number;
+  orders_late: number;
+  orders_infeasible: number;
+  on_time_rate: number;
+  total_material_cost_rm: number;
+  hours_used: number;
+  hours_available: number;
+  utilisation: number;
+};
+
+//  whole answer from the backend
+export type PlanResult = {
+  generated_at: string;
+  planning_start: string;
+  schedule: ScheduleLine[];
+  material_requirements: MaterialLine[];
+  purchase_request: PurchaseRequest;
+  metrics: {
+    baseline: MetricSet;
+    optimised: MetricSet;
+  };
+  warnings: string[];
+  assumptions: string[];
+};
+// ====== the raw input data from the GET /input/sample
+// one product the factory can make
+export type Product = {
+  product_id: string;
+  name: string;
+  unit: string;
+  units_per_hour: number;
+};
+
+// one customer order
+export type Order = {
+  order_id: string;
+  customer: string;
+  product_id: string;
+  quantity: number;
+  due_date: string;
+};
+
+
+// = rest is passed back to the backend 
+export type ProductionInput = {
+  materials: unknown[];
+  products: Product[];
+  recipes: unknown[];
+  orders: Order[];
+  capacity: unknown;
+};
+export type ForecastDriver = {
+  driver: string;
+  multiplier: number;
+};
+
+export type ForecastLine = {
+  week_start: string;
+  product_id: string;
+  forecast_units: number;
+  lower_80: number;
+  upper_80: number;
+  change_vs_last_4_weeks_pct: number;
+  festive_event: string | null;
+  weeks_to_event: number | null;
+  drivers: ForecastDriver[];
+};
+
+export type BacktestResult = {
+  weeks_tested: number;
+  model_mape: number;
+  naive_last_4_weeks_mape: number;
+  seasonal_naive_mape: number;
+  interval_80_coverage: number;
+};
+
+export type ForecastResult = {
+  generated_at: string;
+  history_end: string;
+  horizon_weeks: number;
+  model: string;
+  forecast: ForecastLine[];
+  backtest: {
+    holdout_start: string;
+    products: Record<string, BacktestResult>;
+  };
+  data_quality: string[];
+  assumptions: string[];
+};
