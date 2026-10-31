@@ -83,6 +83,11 @@ def health():
 def plan_sample():
     return build_response(load_production_input())
 
+# to give the frontend the labels of choices in the frontend
+@app.get("/input/sample") #name of the api
+def input_sample(): 
+    return load_production_input()
+
 
 @app.post("/plan")
 def plan(data: ProductionInput):
